@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <title>Gallery</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/animate.css"/>
+    <link rel="stylesheet" href="./styles/main.css"/>
+    <link rel="stylesheet" href="./styles/blueimp-gallery.min.css">
+
+    <script type="text/javascript">
+      const numberOfSlides = 20;
+      function renderLinks(){
+        var render = "";
+        for(var i = 0; i < numberOfSlides; i++){
+          render += '<a href="./assets/slides/p' + (i + 1) + '.jpg" title="Picture">' +
+                  '<img src="./assets/slides/p' + (i + 1) + '.thumbnail.png"/>' +
+                '</a>';
+        }
+        return render;
+      }
+    </script>
+
+  </head>
+  <body>
+    <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+    <div id="blueimp-gallery" class="blueimp-gallery">
+      <div class="slides"></div>
+      <h3 class="title"></h3>
+      <a class="prev">‹</a>
+      <a class="next">›</a>
+      <a class="close">×</a>
+      <a class="play-pause"></a>
+      <ol class="indicator"></ol>
+    </div>
+    <div class="row container">
+      <div class="col-xs-6 col-sm-10 col-md-10 col-lg-10 inner">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 content">
+            <h2 class="animated slideInDown"><a href="./resources.html">&larr; Resources Drive</a></h2>
+            <ul class="nav nav-pills sticky-top animated slideInLeft" id="category-bar">
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html#skills">Skills</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html#contact">Contact</a>
+              </li>
+            </ul>
+            <br/>
+            <div class="animated bounceInUp carousel-container">
+              <div id="links">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script type="text/javascript">
+      document.getElementById("links").innerHTML = renderLinks();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="./js/blueimp-gallery.min.js"></script>
+
+    <script>
+      document.getElementById('links').onclick = function (event) {
+          event = event || window.event;
+          var target = event.target || event.srcElement,
+              link = target.src ? target.parentNode : target,
+              options = {index: link, event: event},
+              links = this.getElementsByTagName('a');
+          blueimp.Gallery(links, options);
+      };
+    </script>
+  </body>
+</html>
